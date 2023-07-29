@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String    @unique @id @default(uuid())
+  username String
+  email    String
+  snippets Snippet[] @relation("SnippetToUser")
+  likes    Like[]    @relation("LikeToUser")
+  comments Comment[] @relation("CommentToUser")
+}
+
+model Snippet {
+  id       String    @unique @id @default(uuid())
+  title    String
+  summary  String
+  code     String
+  user     User      @relation("SnippetToUser", fields: [userId], references: [id])
+  likes    Like[]    @relation("LikeToSnippet")
+  comments Comment[] @relation("CommentToSnippet")
+  userId   String
+}
+
+model Like {
+  id       String   @unique @id @default(uuid())
+  user     User     @relation("LikeToUser", fields: [userId], references: [id])
+  snippet  Snippet  @relation("LikeToSnippet", fields: [snippetId], references: [id])
+  userId   String
+  snippetId String
+}
+
+model Comment {
+  id       String   @unique @id @default(uuid())
+  user     User     @relation("CommentToUser", fields: [userId], references: [id])
+  snippet  Snippet  @relation("CommentToSnippet", fields: [snippetId], references: [id])
+  userId   String
+  snippetId String
+}
