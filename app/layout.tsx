@@ -6,6 +6,12 @@ export const metadata = {
   title: "Snippets",
   description:
     "Upload, share and enjoy these awesome code snippets from people all around the world!!",
+  charset: "utf-8",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  viewport:
+    "width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui",
 };
 
 export default function RootLayout({

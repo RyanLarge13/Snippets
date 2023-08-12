@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CgMenuRight } from "react-icons/cg";
+import Image from "next/image";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -10,7 +11,13 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center px-3 py-5 bg-slate-700 shadow-sm bg-opacity-10">
-      <p>Snippets</p>
+      <Image
+        src="/assets/images/logo.svg"
+        alt="logo"
+        width={30}
+        height={30}
+        className="rounded-full"
+      />
       <ul className="flex justify-end items-center">
         <li className="mx-1">
           <button
@@ -51,22 +58,23 @@ const Header = () => {
           />
         </li>
       </ul>
-      <AnimatePresence>
-        {open && (
+      {open && (
+        <AnimatePresence>
           <motion.nav
-            initial={{ opacity: 0, y: -100 }}
+            initial={{ top: "110%" }}
+            exit={{ top: "110%" }}
             animate={{
-              opacity: 1,
-              y: 0,
+              top: "25vh",
               transition: { type: "spring", stiffness: 50 },
             }}
-            exit={{ opacity: 0, y: -100 }}
             className="fixed top-[-50px] right-10 left-10 bg-gradient-to-tr from-black to-purple-900 bottom-10 rounded-b-md shadow-sm z-10 overflow-y-auto"
           >
             <ul></ul>
           </motion.nav>
-        )}
-        {register && (
+        </AnimatePresence>
+      )}
+      {register && (
+        <AnimatePresence>
           <motion.div
             initial={{ top: "110%" }}
             exit={{ top: "110%" }}
@@ -100,8 +108,10 @@ const Header = () => {
             <hr />
             <p className="mt-2 text-center">or</p>
           </motion.div>
-        )}
-        {signin && (
+        </AnimatePresence>
+      )}
+      {signin && (
+        <AnimatePresence>
           <motion.div
             initial={{ top: "110%" }}
             exit={{ top: "110%" }}
@@ -113,8 +123,8 @@ const Header = () => {
           >
             <h2>Signup and join the community</h2>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </header>
   );
 };
