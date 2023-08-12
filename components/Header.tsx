@@ -11,13 +11,12 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center px-3 py-5 bg-slate-700 shadow-sm bg-opacity-10">
-      <Image
-        src="/assets/images/logo.svg"
-        alt="logo"
-        width={30}
-        height={30}
-        className="rounded-full"
-      />
+        <Image
+          src="/assets/images/logo.svg"
+          alt="logo"
+          width={30}
+          height={30}
+        />
       <ul className="flex justify-end items-center">
         <li className="mx-1">
           <button
