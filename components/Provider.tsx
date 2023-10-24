@@ -5,7 +5,7 @@ import { Session } from "next-auth"; // importing session for defining type
 
 type ProviderProps = {
   session: Session | null;
-  children: ReactNode;
+  children: ReactNode | null;
 };
 
 const Provider = ({ children, session }: ProviderProps) => {
