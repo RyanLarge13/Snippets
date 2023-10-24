@@ -91,11 +91,11 @@ const Header = () => {
                 Object.values(providers).map((provider) => (
                   <button
                     className="bg-black shadow-lg rounded-sm py-2 px-3"
-                    onClick={() => signIn(provider?.name || "Google")}
+                    onClick={() => signIn(provider.name && provider?.name || "Google")}
                     type="button"
-                    key={provider?.name || "Google"}
+                    key={provider.name && provider?.name || "Google"}
                   >
-                    {provider?.name || "Google"}
+                    {provider.name && provider?.name || "Google"}
                   </button>
                 ))}
             </motion.div>
