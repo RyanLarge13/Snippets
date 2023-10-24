@@ -91,7 +91,7 @@ const Header = () => {
                 Object.values(providers).map((provider) => (
                   <button
                     className="bg-black shadow-lg rounded-sm py-2 px-3"
-                    onClick={signIn}
+                    onClick={() => signIn(provider.name)}
                     type="button"
                     key={provider.name}
                   >
