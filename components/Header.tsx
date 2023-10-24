@@ -7,7 +7,9 @@ import Image from "next/image";
 
 const Header = () => {
   const { data: session } = useSession();
-  const [providers, setProviders] = useState<Record<string, unknown> | null>(null);
+  const [providers, setProviders] = useState<Record<string, unknown> | null>(
+    null
+  );
   const [signin, setSignIn] = useState(false);
 
   useEffect(() => {
@@ -23,9 +25,9 @@ const Header = () => {
       <p className="bg-gradient-to-tr from-fuchsia-500 to-pink-300 bg-clip-text text-transparent font-extrabold text-lg">
         Snipz
       </p>
-      {session?.user ? (
+      {session?.user && session?.user.image ? (
         <Image
-          src={session?.user.image}
+          src={session.user.image}
           width={35}
           height={35}
           className="rounded-full"
