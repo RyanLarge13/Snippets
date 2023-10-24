@@ -10,7 +10,8 @@ datasource db {
 model User {
   id       String    @unique @id @default(uuid())
   username String
-  email    String
+  email    String    @unique
+  avatar   String?
   snippets Snippet[] @relation("SnippetToUser")
   likes    Like[]    @relation("LikeToUser")
   comments Comment[] @relation("CommentToUser")
