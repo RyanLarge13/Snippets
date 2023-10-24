@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const Header = () => {
   const { data: session } = useSession();
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState<Record<string, unknown> | null>(null);
   const [signin, setSignIn] = useState(false);
 
   useEffect(() => {
