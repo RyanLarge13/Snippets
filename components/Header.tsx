@@ -88,14 +88,16 @@ const Header = () => {
               <hr />
               <p className="mt-2 text-center">or</p>
               {providers &&
-                Object.values(providers).map((provider) => (
+                Object.values(providers).map((provider: any) => (
                   <button
                     className="bg-black shadow-lg rounded-sm py-2 px-3"
-                    onClick={() => signIn(provider.name && provider?.name || "Google")}
+                    onClick={() =>
+                      signIn((provider.name && provider?.name) || "Google")
+                    }
                     type="button"
-                    key={provider.name && provider?.name || "Google"}
+                    key={(provider.name && provider?.name) || "Google"}
                   >
-                    {provider.name && provider?.name || "Google"}
+                    {(provider.name && provider?.name) || "Google"}
                   </button>
                 ))}
             </motion.div>
