@@ -1,0 +1,6 @@
+{
+  "parser": "babel",
+  "semi": false,
+  "singleQuote": true
+  // Add other formatting options as needed
+}

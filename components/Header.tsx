@@ -20,13 +20,9 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center px-3 py-5 bg-slate-700 shadow-sm bg-opacity-10">
-      <Image
-        src="/assets/images/logo.svg"
-        alt="logo"
-        width={100}
-        height={100}
-        className="rounded-sm"
-      />
+      <p className="bg-gradient-to-tr from-fuchsia-500 to-pink-300 bg-clip-text text-transparent font-extrabold text-lg">
+        Snipz
+      </p>
       {session?.user ? (
         <Image
           src={session?.user.image}
@@ -39,7 +35,7 @@ const Header = () => {
         <button
           className={`${
             signin ? "shadow-purple-500 shadow-sm" : "shadow-md"
-          } rounded-sm py-1 px-3 bg-black bg-opacity-30 mr-5`}
+          } rounded-sm py-1 px-3 bg-black bg-opacity-30`}
           onClick={() => {
             setSignIn((prev) => !prev);
           }}
