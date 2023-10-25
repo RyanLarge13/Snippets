@@ -9,6 +9,7 @@ const Profile = async () => {
     const snippets = await prisma.snippet.findMany({
       where: { userId: user.id },
     });
+    console.log("Fetched SNipz: ", snippets)
     return snippets;
   };
 
