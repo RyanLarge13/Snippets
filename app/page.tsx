@@ -2,27 +2,24 @@ import Snippet from "../components/Snippet";
 
 const Home = () => {
   const textOne = `
-  const trans = () => {
-    const elem = document
-    .querySelector(".fun")
-    .addEventListener("click", () => console.log("ready to translate"))
-  }`;
-  const textTwo = `
-  int main() {
-  	return 0;
-  }`;
+  const helloSnipz = (stringAddition) => {
+    const string = "Hello Snipz!" + stringAddition;
+    console.log(string);
+  };
+  
+  helloSnipz(" This is awesome!");
+  `;
 
   return (
-    <main className="px-5 mt-20">
-      <h1 className="text-4xl font-semibold">Snippets</h1>
+    <main className="px-5 mt-20 lg:px-40">
+      <div className="max-w-[400px]">
+      <h1 className="text-4xl font-semibold mb-2">Enrich Developers With Your Best Code Snipz</h1>
       <p>
-        Create and share with the world your inovative code and create a better
+        Create and share with the world your inovative code and build a better
         place for developers in need of help
       </p>
-      <Snippet text={textOne} language="javascript" user="RyanLarge" />
-      <div className="translate-x-10 translate-y-[-50] mb-10">
-        <Snippet text={textTwo} language="cpp" user="markIvely" />
       </div>
+      <Snippet text={textOne} language="javascript" user="RyanLarge" />
     </main>
   );
 };

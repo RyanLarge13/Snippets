@@ -1,40 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { UserButton } from "@clerk/nextjs";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSession, getProviders, signIn, signOut } from "next-auth/react";
-import Image from "next/image";
 
 const Header = () => {
-  const { data: session } = useSession();
-  const [providers, setProviders] = useState<Record<string, unknown> | null>(
-    null
-  );
   const [signin, setSignIn] = useState(false);
-
-  useEffect(() => {
-    const setUpProviders = async () => {
-      const response = await getProviders();
-      setProviders(response);
-    };
-    setUpProviders();
-  }, []);
 
   return (
     <header className="flex justify-between items-center px-3 py-5 bg-slate-700 shadow-sm bg-opacity-10">
       <p className="bg-gradient-to-tr from-fuchsia-500 to-pink-300 bg-clip-text text-transparent font-extrabold text-lg">
         Snipz
       </p>
-      {session?.user && session?.user.image ? (
-        <Image
-          src={session.user.image}
-          width={35}
-          height={35}
-          className="rounded-full"
-          alt="user"
-        />
-      ) : (
-        <button
+      <UserButton />
+        {/* <button
           className={`${
             signin ? "shadow-purple-500 shadow-sm" : "shadow-md"
           } rounded-sm py-1 px-3 bg-black bg-opacity-30`}
@@ -43,8 +22,7 @@ const Header = () => {
           }}
         >
           Sign In
-        </button>
-      )}
+        </button> */}
       <AnimatePresence>
         {signin && (
           <>
@@ -85,21 +63,6 @@ const Header = () => {
                   Sign in
                 </button>
               </form>
-              <hr />
-              <p className="mt-2 text-center">or</p>
-              {providers &&
-                Object.values(providers).map((provider: any) => (
-                  <button
-                    className="bg-black shadow-lg rounded-sm py-2 px-3"
-                    onClick={() =>
-                      signIn((provider.name && provider?.name) || "Google")
-                    }
-                    type="button"
-                    key={(provider.name && provider?.name) || "Google"}
-                  >
-                    {(provider.name && provider?.name) || "Google"}
-                  </button>
-                ))}
             </motion.div>
           </>
         )}
