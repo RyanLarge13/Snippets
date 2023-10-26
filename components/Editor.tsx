@@ -1,24 +1,54 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 import CodeMirror from "@uiw/react-codemirror";
 import Snippet from "./Snippet";
-import { StreamLanguage } from "@codemirror/language";
 import { javascript } from "@codemirror/lang-javascript";
 import { monokai } from "@uiw/codemirror-theme-monokai";
 import { cpp } from "@codemirror/lang-cpp";
 
 type Lang = {
   language: string;
+  title: string,
+  summary: string
 };
 
-const Editor = ({ language }: Lang) => {
-  const [value, setValue] = useState("console.log('hello world!');");
+const Editor = ({ language, title, summary }: Lang) => {
+  const { userId } = useAuth()
+  
+  const [value, setValue] = useState("console.log('Let's create a new Snip!');");
   const [showCompleteSnip, setShowCompleteSnip] = useState(false);
+
+  const router = useRouter()
 
   const onChange = useCallback((val, viewUpdate) => {
     setValue(val);
   }, []);
+
+ const createSnip = async () => {
+    try {
+      const res = await fetch("/api/snip/new", {
+        method: "POST",
+        body: JSON.stringify({
+          userId: userId,
+          title: title,
+          summary: summary,
+          language: language,
+          code: value
+        }),
+      });
+      if (res.ok) {
+        router.push("/snipz");
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      console.log("Finished")
+    }
+  };
+
 
   return (
     <div className="overflow-hidden rounded-mlsm shadow-lg mt-10">
@@ -43,7 +73,7 @@ const Editor = ({ language }: Lang) => {
           <Snippet text={value} language={language} user="RyanLarge13" />
         </div>
       )}
-      <button className="bg-slate-700 py-5 mt-5 rounded-sm shadow-lg font-semibold w-full">
+      <button onClick={() => createSnip()} className="bg-slate-700 py-5 mt-5 rounded-sm shadow-lg font-semibold w-full">
         Save
       </button>
     </div>

@@ -12,6 +12,7 @@ id       String    @unique @id @default(uuid())
 title    String
 summary  String
 code     String
+language String
 likes    Like[]    @relation("LikeToSnippet")
 comments Comment[] @relation("CommentToSnippet")
 userId   String
