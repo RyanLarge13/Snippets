@@ -8,6 +8,8 @@ const Home = () => {
   };
   
   helloSnipz(" This is awesome!");
+  
+  // prints out "Hello Sniptz! This is awesome!"
   `;
 
   return (

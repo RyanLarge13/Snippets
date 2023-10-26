@@ -1,5 +1,34 @@
-const Page = () => {
-	return <p>Create</p>
-}
+import CodeEditor from "../../components/CodeEditor";
 
-export default Page
+const Page = () => {
+  return (
+    <div className="p-3">
+      <h1 className="text-5xl font-bold">
+        Create
+        <br /> Your Next Big Snipz
+      </h1>
+      <div className="mt-20 px-5">
+        <p className="text-2xl mb-3 font-semibold">Pick Your Language</p>
+        <select
+          name="programming-language"
+          className="w-48 px-4 py-2 rounded-sm shadow-lg bg-slate-700 focus:outline-none w-full"
+        >
+          <option value="javascript">JavaScript</option>
+          <option value="python">Python</option>
+          <option value="c++">C++</option>
+          <option value="bash">Bash</option>
+          <option value="jsx">JSX</option>
+          <option value="tsx">TSX</option>
+          <option value="typescript">TypeScript</option>
+          <option value="css">CSS</option>
+          <option value="html">HTML</option>
+          <option value="c">C</option>
+          <option value="sql">SQL</option>
+        </select>
+        <CodeEditor />
+      </div>
+    </div>
+  );
+};
+
+export default Page;

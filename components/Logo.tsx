@@ -10,7 +10,7 @@ import {
   AiFillHome,
   AiFillProfile,
 } from "react-icons/ai";
-import { BsFilePost } from "react-icons/bs"; 
+import { BsFilePost } from "react-icons/bs";
 
 const Logo = () => {
   const pathname = usePathname();
@@ -32,7 +32,7 @@ const Logo = () => {
             initial={{ opacity: 0, x: -25 }}
             exit={{ opacity: 0, x: -25 }}
             animate={{ opacity: 1, x: 0 }}
-            className="absolute top-20 left-3 bg-gray-700 rounded-md shadow-lg p-5 w-60 z-10"
+            className="absolute top-20 left-3 bg-gray-900 rounded-md shadow-lg p-5 w-60 z-10"
           >
             {!userId && (
               <ul className="flex flex-col gap-y-5">
