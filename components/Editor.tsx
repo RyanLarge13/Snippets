@@ -18,7 +18,7 @@ type Lang = {
 const Editor = ({ language, title, summary }: Lang) => {
   const { userId } = useAuth()
   
-  const [value, setValue] = useState("console.log('Let's create a new Snip!');");
+  const [value, setValue] = useState("console.log(\"Let us create a new Snip!\");");
   const [showCompleteSnip, setShowCompleteSnip] = useState(false);
 
   const router = useRouter()

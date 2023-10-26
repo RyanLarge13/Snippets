@@ -14,7 +14,7 @@ const Page = () => {
         Create
         <br /> Your Next Big Snipz
       </h1>
-      <div className="mt-20 px-5">
+      <div className="mt-20 mb-10 px-5">
         <div className="lg:flex justify-between items-start mb-10 gap-x-20">
           <div className="w-full">
         <p className="text-2xl mb-3 font-semibold">Give your Snip A Title</p>

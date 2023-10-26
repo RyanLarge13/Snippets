@@ -9,7 +9,7 @@ export const metadata = {
     "Upload, share and enjoy awesome code snippets from people all around the world!!",
   charset: "utf-8",
   icons: {
-    icon: "./favicon.svg",
+    icon: "./favicon.ico",
   },
   viewport:
     "width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui",
