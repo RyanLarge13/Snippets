@@ -22,7 +22,7 @@ type HighlighterProps = {
 const Highlighter = ({ code, language }: HighlighterProps) => {
   useEffect(() => {
     Prism.highlightAll();
-  }, []);
+  }, [code, language]);
 
   return (
     <pre className="rounded-md">
