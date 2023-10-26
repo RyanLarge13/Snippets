@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import CodeEditor from "../../components/CodeEditor";
 
 const Page = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState("javascript");
+
   return (
     <div className="p-3">
       <h1 className="text-5xl font-bold">
@@ -12,10 +17,12 @@ const Page = () => {
         <select
           name="programming-language"
           className="w-48 px-4 py-2 rounded-sm shadow-lg bg-slate-700 focus:outline-none w-full"
+          value={selectedLanguage}
+          onChange={(e) => setSelectedLanguage(e.target.value)}
         >
           <option value="javascript">JavaScript</option>
           <option value="python">Python</option>
-          <option value="c++">C++</option>
+          <option value="cpp">C++</option>
           <option value="bash">Bash</option>
           <option value="jsx">JSX</option>
           <option value="tsx">TSX</option>
@@ -25,7 +32,7 @@ const Page = () => {
           <option value="c">C</option>
           <option value="sql">SQL</option>
         </select>
-        <CodeEditor />
+        <CodeEditor language={selectedLanguage} />
       </div>
     </div>
   );

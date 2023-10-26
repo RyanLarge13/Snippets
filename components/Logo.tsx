@@ -44,6 +44,7 @@ const Logo = () => {
                   <Link
                     href="/"
                     className="p-3 flex justify-between items-center"
+                    onClick={() => setMenu(false)}
                   >
                     <p>Home</p>
                     <AiFillHome />
@@ -57,6 +58,7 @@ const Logo = () => {
                   <Link
                     href="/snipz"
                     className="p-3 flex justify-between items-center"
+                    onClick={() => setMenu(false)}
                   >
                     <p>Snipz</p>
                     <BsFilePost />
@@ -74,6 +76,7 @@ const Logo = () => {
                   <Link
                     href="/"
                     className="p-3 flex justify-between items-center"
+                    onClick={() => setMenu(false)}
                   >
                     <p>Home</p>
                     <AiFillHome />
@@ -87,6 +90,7 @@ const Logo = () => {
                   <Link
                     href="/profile"
                     className="p-3 flex justify-between items-center"
+                    onClick={() => setMenu(false)}
                   >
                     <p>Profile</p>
                     <AiFillProfile />
@@ -100,6 +104,7 @@ const Logo = () => {
                   <Link
                     href="/snipz"
                     className="p-3 flex justify-between items-center"
+                    onClick={() => setMenu(false)}
                   >
                     <p>Snipz</p>
                     <BsFilePost />
@@ -113,6 +118,7 @@ const Logo = () => {
                   <Link
                     href="/create"
                     className="p-3 flex justify-between items-center"
+                    onClick={() => setMenu(false)}
                   >
                     <p>Create</p>
                     <AiOutlineAppstoreAdd />
@@ -122,7 +128,7 @@ const Logo = () => {
             )}
           </motion.div>
         )}
-      </AnimatePresence>{" "}
+      </AnimatePresence>
     </>
   );
 };
