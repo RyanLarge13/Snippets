@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import CodeEditor from "../../components/CodeEditor";
+import Editor from "../../components/Editor";
 
 const Page = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("javascript");
@@ -32,7 +32,7 @@ const Page = () => {
           <option value="c">C</option>
           <option value="sql">SQL</option>
         </select>
-        <CodeEditor language={selectedLanguage} />
+        <Editor language={selectedLanguage} />
       </div>
     </div>
   );
