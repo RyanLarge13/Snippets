@@ -1,4 +1,3 @@
-import { BiSolidCopyAlt } from "react-icons/bi";
 import {
   AiOutlineExpandAlt,
   AiOutlineShareAlt,
@@ -8,7 +7,7 @@ import {
 } from "react-icons/ai";
 import { FaComments } from "react-icons/fa";
 import Highlighter from "./Highlighter";
-import formatCode from "../utils/formatCode.js";
+import CopyToClipboard from "./CopyToClipboard";
 
 type SnippetProps = {
   text: string;
@@ -22,9 +21,7 @@ const Snippet = ({ text, language, user }: SnippetProps) => {
       <div className="flex justify-between items-center px-3 py-1">
         <p className="text-green-400">{`~$${user} _`} </p>
         <div className="flex gap-x-2">
-          <button>
-            <BiSolidCopyAlt />
-          </button>
+          <CopyToClipboard text={text} />
           <button>
             <AiOutlineExpandAlt />
           </button>

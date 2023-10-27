@@ -16,12 +16,12 @@ const Page = () => {
       </h1>
       <div className="mt-20 mb-10 px-5">
         <div className="lg:flex justify-between items-start mb-10 gap-x-20">
-          <div className="w-full">
+          <div className="w-full mb-5">
         <p className="text-2xl mb-3 font-semibold">Give your Snip A Title</p>
         <input type="text" className="bg-slate-900 rounded-sm shadow-lg p-3 focus:outline-none w-full" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div className="w-full">
-        <p className="text-2xl mb-3 font-semibold">Give Your Snip A Description</p>
+        <p className="text-2xl my-3 font-semibold">Give Your Snip A Description</p>
         <input type="text" className="bg-slate-900 rounded-sm shadow-lg p-3 focus:outline-none w-full" value={summary} onChange={(e) => setSummary(e.target.value)} />
           </div>
         </div>

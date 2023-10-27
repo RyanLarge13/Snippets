@@ -24,7 +24,7 @@ const Logo = () => {
         onClick={() => setMenu((prev) => !prev)}
         className="bg-gradient-to-tr from-fuchsia-500 to-pink-300 bg-clip-text text-transparent font-extrabold text-lg"
       >
-        Snipz{pathname}
+        Snipz{pathname.includes("/user") ? "/user" : pathname}
       </button>{" "}
       <AnimatePresence>
         {menu && (
