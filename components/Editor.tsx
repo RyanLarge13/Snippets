@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useUser } from "@clerk/nextjs";
 import CodeMirror from "@uiw/react-codemirror";
-import Snippet from "./Snippet";
+import SnippetClient from "./SnippetClient";
 import { javascript } from "@codemirror/lang-javascript";
 import { monokai } from "@uiw/codemirror-theme-monokai";
 import { cpp } from "@codemirror/lang-cpp";
@@ -22,7 +22,7 @@ const Editor = ({ language, title, summary }: Lang) => {
   const [value, setValue] = useState(
     'console.log("Let us create a new Snip!");'
   );
-  const [showCompleteSnip, setShowCompleteSnip] = useState(true);
+  const [showCompleteSnip, setShowCompleteSnip] = useState(false);
 
   const router = useRouter();
 
@@ -74,14 +74,10 @@ const Editor = ({ language, title, summary }: Lang) => {
       </button>
       {showCompleteSnip && (
         <div>
-          <Snippet
-            snipId={false}
+          <SnippetClient
             text={value}
             language={language}
             user={`${user.firstName}${user.lastName}`}
-            comments={0}
-            likes={0}
-            favs={[]}
           />
         </div>
       )}

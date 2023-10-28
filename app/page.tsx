@@ -1,4 +1,4 @@
-import Snippet from "../components/Snippet";
+import SnippetClient from "@/components/SnippetClient";
 
 const Home = () => {
   const textOne = `
@@ -23,15 +23,7 @@ const Home = () => {
           place for developers in need of help
         </p>
       </div>
-      <Snippet
-        snipId={false}
-        text={textOne}
-        language="javascript"
-        user="RyanLarge"
-        comments={0}
-        likes={0}
-        favs={[]}
-      />
+      <SnippetClient text={textOne} language="javascript" user="SnipzUser" />
     </main>
   );
 };
