@@ -1,9 +1,9 @@
 const copyToClipboard = (textToCopy) => {
   navigator.clipboard.writeText(textToCopy).then(
-    function () {
-      alert("Text copied to clipboard");
+    () => {
+      console.log("Copied");
     },
-    function (err) {
+    (err) => {
       console.error("Unable to copy text: ", err);
     }
   );
