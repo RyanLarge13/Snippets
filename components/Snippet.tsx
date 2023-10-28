@@ -1,26 +1,31 @@
-import { AiOutlineExpandAlt, AiFillLike, AiOutlineStar } from "react-icons/ai";
+import { AiOutlineExpandAlt, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { currentUser } from "@clerk/nextjs";
 import { FaComments } from "react-icons/fa";
 import Highlighter from "./Highlighter";
 import CopyToClipboard from "./CopyToClipboard";
 import LikeSnippet from "./LikeSnippet";
+import UnLikeSnippet from "./UnlikeSnip";
+import UnFavoriteSnip from "./UnFavoriteSnip";
+import FavoriteSnip from "./FavoriteSnip";
 
 type SnippetProps = {
-  snipId: string;
+  snipId: string | Boolean;
   text: string;
   language: string;
   user: string;
-  comments: { id: string; userId: string; snippetId: string }[];
-  likes: { id: string; userId: string; snippetId: string }[];
+  comments: { id: string; userId: string; snippetId: string }[] | number;
+  likes: { id: string; userId: string; snippetId: string }[] | number;
+  favs: { id: string; userId: string; snippetId: string }[];
 };
 
 const Snippet = async ({
-  snipId,
+  snipId = false,
   text,
   language,
   user,
   comments,
   likes,
+  favs,
 }: SnippetProps) => {
   const { id } = await currentUser();
 
@@ -33,24 +38,34 @@ const Snippet = async ({
           <button>
             <AiOutlineExpandAlt />
           </button>
-          {likes.length > 0 && likes.some((like) => like.id === id) ? (
-            <LikeSnippet userId={id} snipId={snipId} />
+          {favs.some((fav) => fav.userId === id) ? (
+            <UnFavoriteSnip
+              favId={favs.filter((fav) => fav.userId === id)[0].id}
+            />
           ) : (
-            <button>
-              <AiOutlineStar />
-            </button>
+            <FavoriteSnip userId={id} snipId={snipId ? snipId : false} />
           )}
         </div>
       </div>
       <Highlighter code={text} language={language} />
       <div className="px-3 py-2 flex justify-between items-center">
         <div className="flex gap-x-2 font-semibold justify-center items-center">
-          <p>{comments.length}</p>
+          {Array.isArray(comments) ? (
+            <p>{comments.length}</p>
+          ) : (
+            <p>{comments}</p>
+          )}
           <FaComments />
         </div>
         <div className="flex gap-x-2 font-semibold justify-center items-center">
-          <p>{likes.length}</p>
-          <AiFillLike />
+          {Array.isArray(likes) ? <p>{likes.length}</p> : <p>{likes}</p>}
+          {Array.isArray(likes) && likes.some((like) => like.userId === id) ? (
+            <UnLikeSnippet
+              likeId={likes.filter((like) => like.userId === id)[0].id}
+            />
+          ) : (
+            <LikeSnippet userId={id} snipId={snipId ? snipId : false} />
+          )}
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ export const POST = async (req, { params }) => {
     userId: id,
     snippetId: snipId,
   };
-  const update = await prisma.like.create({ data: newLike });
+  const update = await prisma.favorite.create({ data: newLike });
   try {
     return new Response(JSON.stringify(update), { status: 201 });
   } catch (err) {

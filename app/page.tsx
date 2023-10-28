@@ -23,13 +23,15 @@ const Home = () => {
           place for developers in need of help
         </p>
       </div>
-      {/* <Snippet
+      <Snippet
+        snipId={false}
         text={textOne}
         language="javascript"
         user="RyanLarge"
-        comments={[]}
-        likes={[]}
-      /> */}
+        comments={0}
+        likes={0}
+        favs={[]}
+      />
     </main>
   );
 };

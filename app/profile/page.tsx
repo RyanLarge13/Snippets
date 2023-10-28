@@ -11,7 +11,7 @@ const Profile = async () => {
     "use server";
     const snippets = await prisma.snippet.findMany({
       where: { userId: user.id },
-      include: { likes: true, comments: true },
+      include: { likes: true, comments: true, favorites: true },
     });
     console.log("Fetched Snipz: ", snippets);
     return snippets;
@@ -48,6 +48,7 @@ const Profile = async () => {
               user={`${user.firstName}${user.lastName}`}
               comments={snip.comments}
               likes={snip.likes}
+              favs={snip.favorites}
             />
           </div>
         ))}

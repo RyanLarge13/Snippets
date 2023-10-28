@@ -8,7 +8,7 @@ const UserPage = async ({ params }) => {
   const user = await clerkClient.users.getUser(params.id);
   const snipz = await prisma.snippet.findMany({
     where: { userId: user.id },
-    include: { comments: true, likes: true },
+    include: { comments: true, likes: true, favorites: true },
   });
 
   return (
@@ -39,6 +39,7 @@ const UserPage = async ({ params }) => {
                 user={`${user.firstName + user.lastName}`}
                 comments={snip.comments}
                 likes={snip.likes}
+                favs={snip.favorites}
               />
             </div>
           ))}

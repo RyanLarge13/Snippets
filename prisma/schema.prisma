@@ -15,12 +15,20 @@ code     String
 language String
 likes    Like[]    @relation("LikeToSnippet")
 comments Comment[] @relation("CommentToSnippet")
+favorites Favorite[] @relation("FavToSnip")
 userId   String
 }
 
 model Like {
 id String   @unique @id @default(uuid())
 snippet Snippet  @relation("LikeToSnippet", fields: [snippetId], references: [id])
+userId String
+snippetId String
+}
+
+model Favorite {
+id String   @unique @id @default(uuid())
+snippet Snippet  @relation("FavToSnip", fields: [snippetId], references: [id])
 userId String
 snippetId String
 }

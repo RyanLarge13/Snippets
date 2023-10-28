@@ -1,14 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export const POST = async (req, { params }) => {
+export const DELETE = async (req, { params }) => {
   console.log("In server");
-  const { id, snipId } = params;
-  const newLike = {
-    userId: id,
-    snippetId: snipId,
-  };
-  const update = await prisma.like.create({ data: newLike });
+  const { id } = params;
+  const update = await prisma.favorite.delete({ where: { id: id } });
   try {
     return new Response(JSON.stringify(update), { status: 201 });
   } catch (err) {

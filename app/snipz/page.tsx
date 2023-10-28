@@ -18,13 +18,12 @@ const Snipz = async () => {
       };
     };
     const snippets = await prisma.snippet.findMany({
-      include: { comments: true, likes: true },
+      include: { comments: true, likes: true, favorites: true },
     });
     const snipsWithUsers = snippets.map((snip) => ({
       ...snip,
       user: getUser(snip.userId),
     }));
-    console.log(snipsWithUsers);
     return snipsWithUsers;
   };
 
@@ -56,6 +55,7 @@ const Snipz = async () => {
             user={snip.user.name.split(" ").join("")}
             comments={snip.comments}
             likes={snip.likes}
+            favs={snip.favorites}
           />
         </div>
       ))}
