@@ -1,4 +1,4 @@
-import { AiOutlineExpandAlt, AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiOutlineExpandAlt } from "react-icons/ai";
 import { currentUser } from "@clerk/nextjs";
 import { FaComments } from "react-icons/fa";
 import Highlighter from "./Highlighter";
@@ -7,13 +7,16 @@ import LikeSnippet from "./LikeSnippet";
 import UnLikeSnippet from "./UnlikeSnip";
 import UnFavoriteSnip from "./UnFavoriteSnip";
 import FavoriteSnip from "./FavoriteSnip";
+import Comments from "./Comments";
 
 type SnippetProps = {
   snipId: string | Boolean;
   text: string;
   language: string;
   user: string;
-  comments: { id: string; userId: string; snippetId: string }[] | number;
+  comments:
+    | { id: string; userId; comment: string; snippetId: string }[]
+    | number;
   likes: { id: string; userId: string; snippetId: string }[] | number;
   favs: { id: string; userId: string; snippetId: string }[];
 };
@@ -68,6 +71,7 @@ const Snippet = async ({
           )}
         </div>
       </div>
+      <Comments comments={comments} />
     </div>
   );
 };

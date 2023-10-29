@@ -36,6 +36,7 @@ snippetId String
 model Comment {
 id String   @unique @id @default(uuid())
 snippet Snippet  @relation("CommentToSnippet", fields: [snippetId], references: [id])
+comment String
 userId String
 snippetId String
 }

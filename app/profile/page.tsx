@@ -13,7 +13,6 @@ const Profile = async () => {
       where: { userId: user.id },
       include: { likes: true, comments: true, favorites: true },
     });
-    console.log("Fetched Snipz: ", snippets);
     return snippets;
   };
 
