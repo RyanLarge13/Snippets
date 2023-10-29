@@ -15,7 +15,7 @@ type SnippetProps = {
   language: string;
   user: string;
   comments:
-    | { id: string; userId; comment: string; snippetId: string }[]
+    | { id: string; userId: string; comment: string; snippetId: string }[]
     | number;
   likes: { id: string; userId: string; snippetId: string }[] | number;
   favs: { id: string; userId: string; snippetId: string }[];
@@ -71,7 +71,7 @@ const Snippet = async ({
           )}
         </div>
       </div>
-      <Comments comments={comments} />
+      {/* {Array.isArray(comments) && <Comments comments={comments} />} */}
     </div>
   );
 };

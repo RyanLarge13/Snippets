@@ -4,7 +4,6 @@ import { AiFillLike } from "react-icons/ai";
 
 const UnLikeSnippet = ({ likeId }: { likeId: string }) => {
   const unLikeSnip = async () => {
-    console.log("being called");
     try {
       const res = await fetch(`/api/snip/unlike/${likeId}`, {
         method: "DELETE",

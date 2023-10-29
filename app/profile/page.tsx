@@ -2,8 +2,7 @@ import { currentUser } from "@clerk/nextjs";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import Snippet from "@/components/Snippet";
-import { BsFillTrashFill } from "react-icons/bs";
-import { BiSolidMessageSquareEdit } from "react-icons/bi";
+import DeleteUpdateSnip from "@/components/DeleteUpdateSnip";
 
 const Profile = async () => {
   const user = await currentUser();
@@ -28,14 +27,7 @@ const Profile = async () => {
               <h2 className="text-2xl font-semibold text-purple-100">
                 {snip.title}
               </h2>
-              <div className="flex justify-center items-center gap-x-3">
-                <button>
-                  <BiSolidMessageSquareEdit className="text-lg text-green-200" />
-                </button>
-                <button>
-                  <BsFillTrashFill className="text-red-300" />
-                </button>
-              </div>
+              <DeleteUpdateSnip snipId={snip.id} />
             </div>
             <p className="mt-1 max-w-[400px] p-3 bg-slate-900 rounded-sm shadow-lg">
               {snip.summary}

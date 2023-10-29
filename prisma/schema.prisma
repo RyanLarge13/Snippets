@@ -21,21 +21,21 @@ userId   String
 
 model Like {
 id String   @unique @id @default(uuid())
-snippet Snippet  @relation("LikeToSnippet", fields: [snippetId], references: [id])
+snippet Snippet  @relation("LikeToSnippet", fields: [snippetId], references: [id], onDelete: Cascade)
 userId String
 snippetId String
 }
 
 model Favorite {
 id String   @unique @id @default(uuid())
-snippet Snippet  @relation("FavToSnip", fields: [snippetId], references: [id])
+snippet Snippet  @relation("FavToSnip", fields: [snippetId], references: [id], onDelete: Cascade)
 userId String
 snippetId String
 }
 
 model Comment {
 id String   @unique @id @default(uuid())
-snippet Snippet  @relation("CommentToSnippet", fields: [snippetId], references: [id])
+snippet Snippet  @relation("CommentToSnippet", fields: [snippetId], references: [id], onDelete: Cascade)
 comment String
 userId String
 snippetId String

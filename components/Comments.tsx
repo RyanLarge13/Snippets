@@ -1,59 +1,55 @@
-"use client";
+import { clerkClient } from "@clerk/nextjs";
 
-import { useState } from "react";
-import { MdExpandMore } from "react-icons/md";
-import { BiUpload } from "react-icons/bi";
-
-type Props = {
-  comments:
-    | { id: string; userId: string; snippetId: string; comment: string }[]
-    | number;
+type Comments = {
+  comments: {
+    id: string;
+    userId: string;
+    snippetId: string;
+    comment: string;
+  }[];
 };
 
-const Comments = async ({ comments }: Props) => {
-  const [show, setShow] = useState(false);
-  const [newSnippetText, setNewSnippetText] = useState("");
-
-  const submitNewComment = () => {
-    const newComment = {};
+const Comments = ({ comments }: Comments) => {
+  const getUser = async (id: string) => {
+    "use sserver";
+    const users = await clerkClient.users.getUserList();
+    const user = users.filter((theUser) => theUser.id === id);
+    return {
+      name: `${user[0].firstName} ${user[0].lastName}`,
+      image: user[0].imageUrl,
+      id: user[0].id,
+    };
   };
 
   return (
-    <div className="mt-3 bg-slate-700 rounded-sm p-3">
-      <button
-        onClick={() => setShow((prev) => !prev)}
-        className="text-lg rounded-sm bg-slate-900 shadow-lg"
-      >
-        <MdExpandMore />
-      </button>
-      {!!show && (
-        <div>
-          <div className="flex justify-between items-start mt-2">
-            <input
-              type="text"
-              value={newSnippetText}
-              placeholder="New Comment"
-              onChange={(e) => setNewSnippetText(e.target.value)}
-              className="bg-slate-900 rounded-sm shadow-lg p-3 focus:outline-none"
-            />
-            <button
-              onClick={() => submitNewComment()}
-              className="bg-slate-900 rounded-sm shadow-l p-1"
-            >
-              <BiUpload />
-            </button>
-          </div>
-          <div>
-            {Array.isArray(comments) &&
-              comments.map((comment) => (
-                <div key={comment.id}>
-                  <p>{comment.comment}</p>
+    <>
+      {comments.length > 0 && (
+        <div className="mt-3 rounded-sm p-5 bg-black max-h-[400px] overflow-auto">
+          {comments.map(async (comment) => {
+            const user = await getUser(comment.userId);
+            return (
+              <div
+                key={comment.id}
+                className="flex justify-between items-center bg-slate-900 rounded-sm shadow-lg py-3 px-5"
+              >
+                <div>
+                  <a href={`/user/${user.id}`}>
+                    <img
+                      src={user.image}
+                      alt="user"
+                      className="w-[30px] h-[30px] rounded-full shadow-lg"
+                    />
+                  </a>
+
+                  <p>{user.name}</p>
                 </div>
-              ))}
-          </div>
+                <p>{comment.comment}</p>
+              </div>
+            );
+          })}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

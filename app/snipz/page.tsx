@@ -2,6 +2,7 @@ import Snippet from "@/components/Snippet";
 import { PrismaClient } from "@prisma/client";
 import { clerkClient } from "@clerk/nextjs";
 import Link from "next/link";
+import Comments from "@/components/Comments";
 const prisma = new PrismaClient();
 // import { PrismaClient } from '@prisma/client/edge'
 // const prisma = new PrismaClient()
@@ -57,6 +58,7 @@ const Snipz = async () => {
             likes={snip.likes}
             favs={snip.favorites}
           />
+          <Comments comments={snip.comments} />
         </div>
       ))}
     </div>
