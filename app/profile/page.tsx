@@ -27,7 +27,13 @@ const Profile = async () => {
               <h2 className="text-2xl font-semibold text-purple-100">
                 {snip.title}
               </h2>
-              <DeleteUpdateSnip snipId={snip.id} />
+              <DeleteUpdateSnip
+                snipId={snip.id}
+                language={snip.language}
+                text={snip.code}
+                title={snip.title}
+                summary={snip.summary}
+              />
             </div>
             <p className="mt-1 max-w-[400px] p-3 bg-slate-900 rounded-sm shadow-lg">
               {snip.summary}

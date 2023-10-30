@@ -4,7 +4,21 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { BiSolidMessageSquareEdit } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 
-const DeleteUpdateSnip = ({ snipId }: { snipId: string }) => {
+type SnipProp = {
+  snipId: string;
+  language: string;
+  text: string;
+  title: string;
+  summary: string;
+};
+
+const DeleteUpdateSnip = ({
+  snipId,
+  language,
+  text,
+  title,
+  summary,
+}: SnipProp) => {
   const router = useRouter();
 
   const deleteSnip = async () => {
@@ -21,7 +35,17 @@ const DeleteUpdateSnip = ({ snipId }: { snipId: string }) => {
     }
   };
 
-  const updateSnip = () => {};
+  const updateSnip = () => {
+    const update = {
+      snipId: snipId,
+      language,
+      text,
+      title,
+      summary,
+    };
+    localStorage.setItem("editSnip", JSON.stringify(update));
+    router.push("/update");
+  };
 
   return (
     <div className="flex justify-center items-center gap-x-3">

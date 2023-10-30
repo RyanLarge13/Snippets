@@ -1,19 +1,28 @@
 "use client";
 
-import { useState } from "react";
-import Editor from "../../components/Editor";
+import { useState, useEffect } from "react";
+import Editor from "@/components/Editor";
 
-const Page = () => {
+const Update = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("javascript");
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
+  const [code, setCode] = useState("");
+  const [id, setId] = useState("");
+
+  useEffect(() => {
+    const localData = localStorage.getItem("editSnip");
+    const parsedSnip = JSON.parse(localData);
+    setSelectedLanguage(parsedSnip.language);
+    setTitle(parsedSnip.title);
+    setSummary(parsedSnip.summary);
+    setCode(parsedSnip.text);
+    setId(parsedSnip.snipId);
+  }, []);
 
   return (
     <div className="p-3 lg:px-40">
-      <h1 className="text-5xl font-bold">
-        Create
-        <br /> Your Next Big Snipz
-      </h1>
+      <h1 className="text-5xl font-bold">Update Your Snip</h1>
       <div className="mt-20 mb-10 px-5">
         <div className="lg:flex justify-between items-start mb-10 gap-x-20">
           <div className="w-full mb-5 lg:mb-0">
@@ -62,13 +71,13 @@ const Page = () => {
           language={selectedLanguage}
           title={title}
           summary={summary}
-          code={null}
-          snipId={null}
-          update={false}
+          code={code}
+          snipId={id}
+          update={true}
         />
       </div>
     </div>
   );
 };
 
-export default Page;
+export default Update;

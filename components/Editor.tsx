@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useUser } from "@clerk/nextjs";
 import CodeMirror from "@uiw/react-codemirror";
@@ -13,9 +13,12 @@ type Lang = {
   language: string;
   title: string;
   summary: string;
+  code: string | null;
+  snipId: string | null;
+  update: boolean;
 };
 
-const Editor = ({ language, title, summary }: Lang) => {
+const Editor = ({ language, title, summary, code, snipId, update }: Lang) => {
   const { userId } = useAuth();
   const { user } = useUser();
 
@@ -26,7 +29,13 @@ const Editor = ({ language, title, summary }: Lang) => {
 
   const router = useRouter();
 
-  const onChange = useCallback((val, viewUpdate) => {
+  useEffect(() => {
+    if (update) {
+      setValue(code);
+    }
+  }, []);
+
+  const onChange = useCallback((val: string) => {
     setValue(val);
   }, []);
 
@@ -44,6 +53,28 @@ const Editor = ({ language, title, summary }: Lang) => {
       });
       if (res.ok) {
         router.push("/snipz");
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      console.log("Finished");
+    }
+  };
+
+  const updateSnip = async () => {
+    try {
+      const res = await fetch(`api/snip/update/${snipId}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          title,
+          summary,
+          language,
+          code: value,
+        }),
+      });
+      if (res.ok) {
+        localStorage.removeItem("editSnip");
+        router.push("/profile");
       }
     } catch (err) {
       console.log(err);
@@ -82,10 +113,12 @@ const Editor = ({ language, title, summary }: Lang) => {
         </div>
       )}
       <button
-        onClick={() => createSnip()}
+        onClick={() => {
+          update ? updateSnip() : createSnip();
+        }}
         className="bg-slate-700 py-5 mt-5 rounded-sm shadow-lg font-semibold w-full"
       >
-        Save
+        {update ? "Update" : "Save"}
       </button>
     </div>
   );
