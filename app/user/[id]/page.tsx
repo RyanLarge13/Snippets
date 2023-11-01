@@ -16,7 +16,7 @@ const UserPage = async ({ params }) => {
       <img
         src={user.imageUrl}
         alt="user"
-        className="w-full rounded-sm shadow-lg md: max-w-[600px]"
+        className="w-full rounded-sm shadow-lg md: max-w-[600px] mt-5"
       />
       <h1 className="text-3xl mt-2 text-green-300">{`~$${user.firstName}${user.lastName} _`}</h1>
       <div className="mt-10">

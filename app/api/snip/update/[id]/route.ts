@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export const PATCH = async (req, { params }) => {
+export const POST = async (req, { params }) => {
   const { id } = params;
-  console.log(id);
-  const { title, summary, language, code } = req.body;
+  const request = await req.json();
+  const { title, summary, language, code } = request;
   const update = await prisma.snippet.update({
     where: { id: id },
     data: {

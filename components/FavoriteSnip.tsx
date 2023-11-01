@@ -9,7 +9,6 @@ type Info = {
 
 const FavoriteSnip = ({ userId, snipId }: Info) => {
   const favSnip = async () => {
-    console.log("being called");
     try {
       const res = await fetch(`/api/snip/fav/${userId}/${snipId}`, {
         method: "POST",

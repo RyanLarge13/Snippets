@@ -43,7 +43,7 @@ const Logo = () => {
                 >
                   <Link
                     href="/"
-                    className="p-3 flex justify-between items-center"
+                    className="p-3 flex justify-between items-center hover:text-fuchsia-200 duration-200"
                     onClick={() => setMenu(false)}
                   >
                     <p>Home</p>
@@ -57,7 +57,7 @@ const Logo = () => {
                 >
                   <Link
                     href="/snipz"
-                    className="p-3 flex justify-between items-center"
+                    className="p-3 flex justify-between items-center hover:text-fuchsia-200 duration-200"
                     onClick={() => setMenu(false)}
                   >
                     <p>Snipz</p>
@@ -75,7 +75,7 @@ const Logo = () => {
                 >
                   <Link
                     href="/"
-                    className="p-3 flex justify-between items-center"
+                    className="p-3 flex justify-between items-center hover:text-fuchsia-200 duration-200"
                     onClick={() => setMenu(false)}
                   >
                     <p>Home</p>
@@ -89,7 +89,7 @@ const Logo = () => {
                 >
                   <Link
                     href="/profile"
-                    className="p-3 flex justify-between items-center"
+                    className="p-3 flex justify-between items-center hover:text-fuchsia-200 duration-200"
                     onClick={() => setMenu(false)}
                   >
                     <p>Profile</p>
@@ -103,7 +103,7 @@ const Logo = () => {
                 >
                   <Link
                     href="/snipz"
-                    className="p-3 flex justify-between items-center"
+                    className="p-3 flex justify-between items-center hover:text-fuchsia-200 duration-200"
                     onClick={() => setMenu(false)}
                   >
                     <p>Snipz</p>
@@ -117,7 +117,7 @@ const Logo = () => {
                 >
                   <Link
                     href="/create"
-                    className="p-3 flex justify-between items-center"
+                    className="p-3 flex justify-between items-center hover:text-fuchsia-200 duration-200"
                     onClick={() => setMenu(false)}
                   >
                     <p>Create</p>

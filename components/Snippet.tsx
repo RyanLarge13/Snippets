@@ -7,7 +7,6 @@ import LikeSnippet from "./LikeSnippet";
 import UnLikeSnippet from "./UnlikeSnip";
 import UnFavoriteSnip from "./UnFavoriteSnip";
 import FavoriteSnip from "./FavoriteSnip";
-import Comments from "./Comments";
 
 type SnippetProps = {
   snipId: string | Boolean;
@@ -71,7 +70,6 @@ const Snippet = async ({
           )}
         </div>
       </div>
-      {/* {Array.isArray(comments) && <Comments comments={comments} />} */}
     </div>
   );
 };

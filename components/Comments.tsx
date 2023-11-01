@@ -1,4 +1,5 @@
 import { clerkClient } from "@clerk/nextjs";
+import AddComment from "./AddComment";
 
 type Comments = {
   comments: {
@@ -7,11 +8,13 @@ type Comments = {
     snippetId: string;
     comment: string;
   }[];
+  snipId: string;
 };
 
-const Comments = ({ comments }: Comments) => {
+const Comments = ({ comments, snipId }: Comments) => {
   const getUser = async (id: string) => {
-    "use sserver";
+    "use server";
+    console.log(comments);
     const users = await clerkClient.users.getUserList();
     const user = users.filter((theUser) => theUser.id === id);
     return {
@@ -30,7 +33,7 @@ const Comments = ({ comments }: Comments) => {
             return (
               <div
                 key={comment.id}
-                className="flex justify-between items-center bg-slate-900 rounded-sm shadow-lg py-3 px-5"
+                className="flex justify-between items-center bg-slate-900 rounded-sm shadow-lg py-3 px-5 my-2"
               >
                 <div>
                   <a href={`/user/${user.id}`}>
@@ -49,6 +52,9 @@ const Comments = ({ comments }: Comments) => {
           })}
         </div>
       )}
+      <div className="mt-3 rounded-sm p-5 bg-black max-h-[400px] overflow-auto">
+        <AddComment snippetId={snipId} />
+      </div>
     </>
   );
 };

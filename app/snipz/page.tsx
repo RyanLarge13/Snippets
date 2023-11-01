@@ -58,7 +58,7 @@ const Snipz = async () => {
             likes={snip.likes}
             favs={snip.favorites}
           />
-          <Comments comments={snip.comments} />
+          <Comments comments={snip.comments} snipId={snip.id} />
         </div>
       ))}
     </div>

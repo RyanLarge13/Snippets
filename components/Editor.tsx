@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useUser } from "@clerk/nextjs";
 import CodeMirror from "@uiw/react-codemirror";
@@ -23,17 +23,11 @@ const Editor = ({ language, title, summary, code, snipId, update }: Lang) => {
   const { user } = useUser();
 
   const [value, setValue] = useState(
-    'console.log("Let us create a new Snip!");'
+    update ? code : 'console.log("Let us create a new Snip!");'
   );
   const [showCompleteSnip, setShowCompleteSnip] = useState(false);
 
   const router = useRouter();
-
-  useEffect(() => {
-    if (update) {
-      setValue(code);
-    }
-  }, []);
 
   const onChange = useCallback((val: string) => {
     setValue(val);
@@ -64,7 +58,7 @@ const Editor = ({ language, title, summary, code, snipId, update }: Lang) => {
   const updateSnip = async () => {
     try {
       const res = await fetch(`api/snip/update/${snipId}`, {
-        method: "PATCH",
+        method: "POST",
         body: JSON.stringify({
           title,
           summary,
@@ -86,7 +80,7 @@ const Editor = ({ language, title, summary, code, snipId, update }: Lang) => {
   return (
     <div className="overflow-hidden rounded-mlsm shadow-lg mt-10">
       <CodeMirror
-        value={value}
+        value={update ? code : value}
         height="200px"
         extensions={[javascript({ jsx: true }), cpp()]}
         theme={monokai}
