@@ -1,5 +1,6 @@
-import { clerkClient } from "@clerk/nextjs";
+import { clerkClient, auth } from "@clerk/nextjs";
 import AddComment from "./AddComment";
+import DeleteComment from "./DeleteComment";
 
 type Comments = {
   comments: {
@@ -12,6 +13,8 @@ type Comments = {
 };
 
 const Comments = ({ comments, snipId }: Comments) => {
+  const { userId } = auth();
+
   const getUser = async (id: string) => {
     "use server";
     console.log(comments);
@@ -33,8 +36,15 @@ const Comments = ({ comments, snipId }: Comments) => {
             return (
               <div
                 key={comment.id}
-                className="flex justify-between items-center bg-slate-900 rounded-sm shadow-lg py-3 px-5 my-2"
+                className="flex relative justify-between items-center bg-slate-900 rounded-sm shadow-lg py-3 px-5 my-2"
               >
+                <div className="absolute top-2 right-2">
+                  {comment.userId === userId && (
+                    <div>
+                      <DeleteComment commentId={comment.id} />
+                    </div>
+                  )}
+                </div>
                 <div>
                   <a href={`/user/${user.id}`}>
                     <img

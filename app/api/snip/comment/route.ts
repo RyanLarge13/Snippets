@@ -12,7 +12,7 @@ export const POST = async (req) => {
   try {
     const commentPosted = await prisma.comment.create({ data: newComment });
     if (commentPosted) {
-      return new Response(JSON.stringify(update), { status: 201 });
+      return new Response(JSON.stringify(commentPosted), { status: 201 });
     }
     if (!commentPosted) {
       return new Response("Failed to create a new prompt, prisma error", {

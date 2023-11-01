@@ -8,6 +8,6 @@ export const DELETE = async (req, { params }) => {
     return new Response(JSON.stringify(update), { status: 201 });
   } catch (err) {
     console.log(err);
-    return new Response("Failed to create a new prompt", { status: 500 });
+    return new Response("Failed to delete snippet", { status: 500 });
   }
 };
