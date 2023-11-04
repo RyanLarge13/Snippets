@@ -2,7 +2,9 @@ import Snippet from "@/components/Snippet";
 import { PrismaClient } from "@prisma/client";
 import { clerkClient } from "@clerk/nextjs";
 import Link from "next/link";
+import UserPlaceHolder from "../../assets/images/userPlaceholder.jpg";
 import Comments from "@/components/Comments";
+import Image from "next/image";
 const prisma = new PrismaClient();
 // import { PrismaClient } from '@prisma/client/edge'
 // const prisma = new PrismaClient()
@@ -12,10 +14,11 @@ const Snipz = async () => {
     "use server";
     const users = await clerkClient.users.getUserList();
     const getUser = (id: string) => {
-      const user = users.filter((theUser) => theUser.id === id);
+      const user = users.filter((theUser) => theUser.id === id)[0];
+      console.log(user);
       return {
-        name: `${user[0].firstName} ${user[0].lastName}`,
-        image: user[0].imageUrl,
+        name: `${user?.firstName || "NULL"} ${user?.lastName || ""}`,
+        image: user?.imageUrl,
       };
     };
     const snippets = await prisma.snippet.findMany({
@@ -40,7 +43,7 @@ const Snipz = async () => {
             </h2>
             <Link href={`/user/${snip.userId}`}>
               <img
-                src={snip.user.image}
+                src={snip.user?.image}
                 alt="user"
                 className="w-[30px] h-[30px] rounded-full shadow-lg"
               />
