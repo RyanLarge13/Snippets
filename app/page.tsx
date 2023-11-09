@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import SnippetClient from "@/components/SnippetClient";
 
 const Home = () => {
